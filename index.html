@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Utilidades y herramientas</title>
+</head>
+
+<body>
+
+
+    <!-- SNAKE GAME -->
+    <section>
+        <div id="board"></div>
+        <div class="boardInfo">
+            <div>
+                Score: <div id="scoreBoard"></div>
+            </div>
+            <button id="start">Start</button>
+        </div>
+        <div id="gameOver">Game Over</div>
+    </section>
+
+    <!-- AHORCADO -->
+    <section class="ahorcadoContainer">
+        <div>
+            <canvas id="canvas"></canvas>
+            <div id="usedLetters"></div>
+        </div>
+        <div id="usedLetters"></div>
+        <div id="wordContainer"></div>
+        <button id="startButton2">START</button>
+    
+    </section>
+    <!-- CRONÓMETRO -->
+    <section class="cronometro">
+        <div class="circle">
+            <div id="stopwatch" class="stopwatch">00:00</div>
+            <div class="buttons">
+                <div class="stop" onclick="stop()"></div>
+                <div id="play-pause" class="paused" onclick="playPause()"></div>
+            </div>
+            <div id="seconds-sphere" class="seconds-sphere"></div>
+        </div>
+    </section>
+
+    <!-- CALCULADORA -->
+    <div class="calcContainer">
+        <div class="calculadora">
+            <div class="display">
+                <div id="valor-anterior"></div>
+                <div id="valor-actual"></div>
+            </div>
+            <button class="col-2" onclick="display.borrarTodo()">C</button>
+            <button onclick="display.borrar()">&larr;</button>
+            <button class="operador" value="dividir">%</button>
+            <button class="numero">7</button>
+            <button class="numero">8</button>
+            <button class="numero">9</button>
+            <button class="operador" value="multiplicar">X</button>
+            <button class="numero">4</button>
+            <button class="numero">5</button>
+            <button class="numero">6</button>
+            <button class="operador" value="restar">-</button>
+            <button class="numero">1</button>
+            <button class="numero">2</button>
+            <button class="numero">3</button>
+            <button class="operador" value="sumar">+</button>
+            <button class="col-2 numero">0</button>
+            <button class="numero">.</button>
+            <button class="operador" value="igual">=</button>
+        </div>
+    </div>
+
+
+    <!-- CIFRADOR CESAR -->
+    <section class="cifCesarSection">
+        <h1>Cifrador Cesar.</h1>
+        <form id="cifrador" autocomplete="off">
+            <input id="input-original" spellcheck="false" placeholder="Ingrese el texto" type="text" name="text">
+        </form>
+        <div id="resultado"></div>
+        <div class="rango">
+            <input id="rango" type="range" value="10" min="1" max="20"
+                oninput="this.nextElementSibling.value = this.value">
+            <output>10</output>
+        </div>
+    </section>
+
+    <!-- GENERADOR DE PALETAS DE COLORES -->
+    <div class="contenedorPrincipalColores">
+        <div id="palleteContainer"></div>
+        <button class="botonColores" onclick="updatePallete()">Generar paleta</button>
+    </div>
+
+    <!-- ORGANIZADOR DE TAREAS -->
+    <div class="list roundBorder">
+        <div class="date">
+            <div class="dateRight">
+                <div id="dateNumber"></div>
+                <div>
+                    <div id="dateMonth"></div>
+                    <div id="dateYear"></div>
+                </div>
+            </div>
+            <div id="dateText"></div>
+        </div>
+        <form class="formTask" onsubmit="addNewTask(event)">
+            <input class="inputTask" type="text" name="taskText" autocomplete="off" placeholder="Nueva tarea"
+                class="roundBorder">
+            <button type="submit" class="addTaskButton">+</button>
+            <button type="button" class="orderButton roundBorder" onclick="renderOrderedTasks()">Ordenar</button>
+        </form>
+        <div id="tasksContainer"></div>
+    </div>
+
+    <script type="text/javascript" src="palabras.js" defer></script>
+    <script src="Calculadora.js" type="text/javascript"></script>
+    <script src="Display.js" type="text/javascript"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

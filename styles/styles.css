@@ -1,0 +1,518 @@
+* {
+    font-family: "Share Tech Mono", monospace;
+}
+
+/* .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#board,
+.boardInfo {
+    max-width: 500px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+#start,
+.boardInfo {
+    font-size: 25px;
+}
+
+#gameOver {
+    display: none;
+}
+
+.boardInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#start {
+    background-color: #f35a69;
+    border: none;
+    color: white;
+}
+
+#scoreBoard {
+    display: inline-flex;
+}
+
+.square {
+    aspect-ratio: 1;
+}
+
+.emptySquare {
+    background-color: #456990;
+}
+
+.snakeSquare {
+    background-color: #ccf47f;
+}
+
+.foodSquare {
+    background-color: #f35a69;
+}
+
+/* JUEGO AHORCADO */
+.hidden {
+    color: transparent;
+}
+
+.ahorcadoContainer {
+    background-color: #4a4063;
+    color: #fff;
+    font-family: 'SF Pixelate', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#wordContainer {
+    margin-top: 20px;
+}
+
+.letter {
+    margin: 0 7px;
+    position: relative;
+    text-align: center;
+}
+
+.letter::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    min-width: 12px;
+}
+
+#startButton {
+    margin-top: 20px;
+    appearance: none;
+    font-family: 'SF Pixelate', sans-serif;
+    border: none;
+    width: 300px;
+    padding: 10px;
+    background: #d95d39;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* CRONÓMETRO */
+.cronometro {
+    font-family: "Roboto Condensed", sans-serif;
+    position: relative;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #fff;
+    color: #fff;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.circle::before {
+    content: '';
+    border-radius: 50%;
+    z-index: -1;
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    left: calc(50% - 80px);
+    top: calc(50% - 80px);
+    background-color: #1d1d1d;
+}
+
+.seconds-sphere {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+    animation: rotacion 60s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes rotacion {
+    from {
+        transform: rotate(-90deg) translateX(60px);
+    }
+
+    to {
+        transform: rotate(270deg) translateX(60px);
+    }
+}
+
+.buttons {
+    margin-top: 10px;
+    display: inline-flex;
+}
+
+.paused {
+    height: 10´x;
+    border-width: 5px 0 5px 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-left: 15px;
+    border-color: transparent transparent transparent #fff;
+    transition: 100ms all ease;
+    will-change: border-width;
+    border-style: solid;
+}
+
+.running {
+    border-style: double;
+    border-width: 0 0 0 10px;
+}
+
+.stop {
+    background-color: #fff;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+}
+
+/* GENERADOR DE PALETAS DE COLORES */
+.contenedorPrincipalColores {
+    background-color: black;
+    margin: 0;
+    font-family: 'Red Hat Display', sans-serif;
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+#palleteContainer {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.palleteItem {
+    transition: background-color .5s;
+} 
+
+.palleteItem span {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.botonColores {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 4px;
+    background: #000;
+}
+
+/* CALCULADORA */
+.calcContainer {
+    font-family: 'Fraunces', serif;
+    color: #fff;
+    margin: 0;
+    border-radius: 50px;
+    padding: 10px 30px;
+    background-color: #224870;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.calculadora {
+    display: grid;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: 160px repeat(5, 75px);
+    background-color: #00916e;
+    padding: 15px;
+    border-radius: 32px;
+    box-shadow: 15px 10px 0px 5px #00000033;
+}
+
+button {
+    cursor: pointer;
+    margin: 5px;
+    padding: 0;
+    border-radius: 32px;
+    font-size: 1.5em;
+    border: none;
+    background-color: #00916e;
+    box-shadow: 5px 5px 10px -3px #00000040, -5px -5px 15px 3px #00ffc11f;
+}
+
+button:active {
+    background-color: #006f54;
+}
+
+button:focus {
+    outline: none;
+}
+
+.col-2 {
+    grid-column: span 2;
+}
+
+.display {
+    grid-column: 1 / -1;
+    padding: 16px;
+    display: flex;
+    margin: 10px 10px 20px;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #363636;
+    border-radius: 32px;
+    text-align: right;
+    justify-content: space-between;
+    word-break: break-all;
+    box-shadow: 0px 0px 0px 10px #00000033;
+}
+
+#valor-actual {
+    font-size: 1.5em;
+}
+
+#valor-anterior {
+    font-size: 2em;
+}
+
+/* ORGANIZADOR DE TAREAS */
+:root {
+    --primary: #A5C882;
+    --secondary: #D33F49;
+    --light: #fff;
+    --dark: #000;
+    --diabled: #e7e7e7;
+}
+
+.roundBorder {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    border-radius: 5px;
+    height: 20vh;
+    background-color: var(--diabled);
+}
+
+*:first-letter {
+    text-transform: capitalize;
+}
+
+.list {
+    margin: 25px auto;
+    padding: 25px;
+    background-color: var(--light);
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 200px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dateRight {
+    display: flex;
+    align-items: center;
+}
+
+#dateNumber {
+    font-size: 50px;
+}
+
+#dateText {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#dateMonth,
+#dateNumber,
+#dateText {
+    font-weight: bold;
+}
+
+#dateMonth,
+#dateYear {
+    margin-left: 7px;
+    font-size: 20px;
+}
+
+.formTask {
+    margin: 20px 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 35px auto;
+    grid-column-gap: 15px;
+}
+
+.inputTask {
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: var(--diabled);
+}
+
+.inputTask:focus {
+    outline: none;
+}
+
+.addTaskButton,
+.orderButton {
+    border: none;
+    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.addTaskButton {
+    height: 35px;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: var(--diabled);
+}
+
+.orderButton {
+    background-color: var(--secondary);
+    color: var(--light);
+}
+
+.task {
+    height: 20px;
+    background-color: var(--primary);
+    padding: 15px;
+    margin-top: 15px;
+    color: var(--light);
+    cursor: pointer;
+}
+
+.done {
+    background-color: var(--diabled);
+    text-decoration: line-through;
+    color: var(--dark);
+}
+
+/* CIFRADOR CESAR */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+
+:root {
+    --color-terminal: #292b36;
+    --borde-redondo: 4px;
+}
+
+.cifCesarSection {
+    font-family: 'Source Code Pro', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5c4b7a;
+    color: white;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+}
+
+.cifCesarSection {
+    padding: 25px;
+    box-shadow: 8px 8px 35px 0px rgb(0 0 0 / 75%);
+    border-radius: var(--borde-redondo);
+}
+
+h1 {
+    margin: 0;
+}
+
+#input-original,
+#resultado {
+    background-color: var(--color-terminal);
+    width: -webkit-fill-available;
+}
+
+#input-original {
+    margin: 10px 0 0;
+    padding: 10px;
+    color: white;
+    border-top-left-radius: var(--borde-redondo);
+    border-top-right-radius: var(--borde-redondo);
+}
+
+#resultado {
+    height: 20px;
+    color: #5af78d;
+    padding: 0 10px 10px;
+    border-bottom-left-radius: var(--borde-redondo);
+    border-bottom-right-radius: var(--borde-redondo);
+}
+
+.rango {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    text-align: center;
+    align-items: center;
+}
+
+input[type='range'] {
+    -webkit-appearance: none;
+    border-radius: var(--borde-redondo);
+    background: var(--color-terminal);
+    margin: 0;
+    padding: 0 5px;
+    height: 20px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: white;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+}
